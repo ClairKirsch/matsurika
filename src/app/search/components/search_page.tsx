@@ -27,7 +27,7 @@ export default function SearchPage({
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center py-32 px-16 bg-white dark:bg-black">
+      <main className="flex min-h-screen w-full max-w-3xl flexbox items-center py-32 px-16 bg-white dark:bg-black">
         <input
           className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
           placeholder={placeholder}
