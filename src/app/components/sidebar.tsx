@@ -24,6 +24,7 @@ export default function Sidebar() {
     { href: "/", label: "Dashboard", icon: "🏠" },
     { href: "/login", label: "Login", icon: "🔐" },
     { href: "/profile", label: "Profile", icon: "👤" },
+    { href: "/search", label: "Search", icon: "🔍" },
   ];
 
   return (
