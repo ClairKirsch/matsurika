@@ -23,6 +23,7 @@ export default function Sidebar() {
   const links = [
     { href: "/", label: "Dashboard", icon: "🏠" },
     { href: "/login", label: "Login", icon: "🔐" },
+    { href: "/profile", label: "Profile", icon: "👤" },
   ];
 
   return (
