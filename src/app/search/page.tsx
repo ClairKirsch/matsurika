@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import SearchPage from './components/search_page';
 
 export default async function QueryPage({ searchParams }: { searchParams: { query?: string } }) {
@@ -6,5 +7,5 @@ export default async function QueryPage({ searchParams }: { searchParams: { quer
 { index: 3, name: 'Result 3', location: 'Null', url: '' },
 { index: 4, name: 'Result 4', location: 'Null', url: '' }
   ];
-  return <SearchPage placeholder="Search..." results={results} />;
+  return <Suspense><SearchPage placeholder="Search..." results={results} /></Suspense>;
 }
