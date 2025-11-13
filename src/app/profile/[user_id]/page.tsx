@@ -1,5 +1,4 @@
-import ProfileClient from '../../components/profile_page';
-import React from 'react';
+import ProfileClient from '../components/profile_page';
 
 export default async function ProfilePage({ params }: { params: { user_id: string } }) {
   const resolvedParams = await params;

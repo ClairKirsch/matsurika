@@ -1,4 +1,4 @@
-import ProfileClient from '../components/profile_page';
+import ProfileClient from './components/profile_page';
 
 export default async function ProfilePage() {
   const profileInfo = {
