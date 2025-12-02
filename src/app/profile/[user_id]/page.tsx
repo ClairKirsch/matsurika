@@ -1,3 +1,4 @@
+import { UserProfile } from '@/app/types/user';
 import ProfileClient from '../components/profile_page';
 import { cookies } from 'next/headers';
 
@@ -26,7 +27,7 @@ export default async function ProfilePage({ params }: { params: { user_id: strin
   if (!response.ok) {
     throw new Error(`Failed to fetch profile data: ${response.status}`);
   }
-  const profileInfo = await response.json();
+  const profileInfo = (await response.json()) as UserProfile;
   console.log(profileInfo);
   return <ProfileClient profileInfo={profileInfo} />;
 }
