@@ -1,17 +1,30 @@
+import { redirect } from 'next/navigation';
 import ProfileClient from './components/profile_page';
+import { cookies } from 'next/headers';
 
 export default async function ProfilePage() {
-  const profileInfo = {
-    name: 'John Doe',
-    bio: 'A short bio about John Doe. Passionate about web development and design.',
-    profilePicture: '/profile-placeholder.png',
-    events: [
-        { venue: 'Venue A', eventname: 'Event 1', eventid: '1' },
-        { venue: 'Venue B', eventname: 'Event 2', eventid: '2' },
-        { venue: 'Venue C', eventname: 'Event 3', eventid: '3' },
-        { venue: 'Venue D', eventname: 'Event 4', eventid: '4' },
-    ],
-  };
+  
+  const apiUrl = process.env.API_URL || 'http://localhost:8000';
+  const cookieStore = await cookies();
+  const accessToken = cookieStore.get('accessToken')?.value;
 
+  if (!accessToken) {
+    redirect('/login');
+  }
+
+  const response = await fetch(`${apiUrl}/users/me/`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${accessToken}`,
+    },
+    cache: 'no-store',
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch profile data: ${response.status}`);
+  }
+  const profileInfo = await response.json();
+  console.log(profileInfo);
   return <ProfileClient profileInfo={profileInfo} />;
 }

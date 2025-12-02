@@ -13,7 +13,7 @@ export default function ProfileClient({ profileInfo }: { profileInfo: any }) {
         height={150}
         className="rounded-full"
       />
-      <div className="text-2xl mt-4">{profileInfo.name}</div>
+      <div className="text-2xl mt-4">{profileInfo.username}</div>
       <div className="text-lg text-gray-600">{profileInfo.bio}</div>
       <br></br>
     <div className="w-full max-w-3xl overflow-x-auto rounded-lg shadow-md border border-gray-200">

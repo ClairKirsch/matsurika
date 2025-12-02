@@ -1,23 +1,46 @@
 import { redirect } from 'next/navigation';
+import { cookies } from 'next/headers';
 
 export default function Login() {
   async function handleSubmit(formData: FormData) {
     'use server';
 
-    const username = formData.get('username');
-    const password = formData.get('password');
-    const twofa = formData.get('2fa');
+    const apiUrl = process.env.API_URL || 'http://localhost:8000';
+    const username = formData.get('username') as string;
+    const password = formData.get('password') as string | null;
+    const twofa = formData.get('2fa') as string | null;
 
-    console.log('Username:', username);
-    console.log('Password:', password);
-    console.log('2FA Code:', twofa);
+    const formBody = new URLSearchParams();
+    if (username) formBody.append('username', username);
+    if (password) formBody.append('password', password);
+    if (twofa) formBody.append('2fa', twofa);
 
-    if (username === 'admin' && password === '1234') {
-      redirect('/');
-    } else {
-      console.log('Invalid login');
+    const response = await fetch(`${apiUrl}/token`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: formBody.toString(),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.text();
+      console.error('Login failed:', response.status, errorData);
+      return; // early exit on failure
     }
 
+    const data = await response.json();
+    const accessToken = data.access_token;
+
+    const cookieStore = await cookies();
+    cookieStore.set({
+      name: 'accessToken',
+      value: accessToken,
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      path: '/',
+      maxAge: (60 * 60 * 24) * 5, // 5 days
+    });
+
+    redirect('/');
   }
 
   return (
