@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 import ProfileClient from './components/profile_page';
 import { cookies } from 'next/headers';
-import { UserProfile } from '../types/user';
+import { UserProfile } from '@/app/types/User';
 
 export default async function ProfilePage() {
   

@@ -1,4 +1,4 @@
-import { UserProfile } from '@/app/types/user';
+import { UserProfile } from '@/app/types/User';
 import ProfileClient from '../components/profile_page';
 import { cookies } from 'next/headers';
 

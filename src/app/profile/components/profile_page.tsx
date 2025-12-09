@@ -1,7 +1,7 @@
 "use client";
 
-import { ConferenceEvent } from '@/app/types/events';
-import { UserProfile } from '@/app/types/user';
+import { ConferenceEvent } from '@/app/types/Events';
+import { UserProfile } from '@/app/types/User';
 import Image from 'next/image';
 import Link from 'next/link';
 

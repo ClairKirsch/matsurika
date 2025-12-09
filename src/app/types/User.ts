@@ -1,5 +1,5 @@
-import type { ConferenceEvent } from '@/app/types/events';
-import type { Message } from '@/app/types/message';
+import type { ConferenceEvent } from '@/app/types/Events';
+import type { Message } from '@/app/types/Message';
 
 export interface UserInfo {
   id: number;

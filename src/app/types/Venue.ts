@@ -1,4 +1,4 @@
-import type { ConferenceEvent } from '@/app/types/events';
+import type { ConferenceEvent } from '@/app/types/Events';
 
 export interface Venue {
   id?: number;
